@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto Desarrollo Web PWA</title>
+    
+    <!-- ========================================================================= -->
+    <!-- [INICIO PARA ARCHIVO HTML] -->
+    <!-- Aquí deberás vincular tu manifest y tu CSS cuando separes los archivos -->
+    <!-- <link rel="manifest" href="./manifest.json"> -->
+    <!-- <link rel="stylesheet" href="./style.css"> -->
+    <!-- ========================================================================= -->
+
+    <!-- ========================================================================= -->
+    <!-- [INICIO PARA ARCHIVO: style.css] -->
+    <!-- Corta todo lo que está dentro de esta etiqueta <style> y pégalo en style.css -->
+    <style>
+        :root {
+            /* Paleta Claro: Verde esmeralda y blanco */
+            --color-bg-glass: rgba(255, 255, 255, 0.7);
+            --color-text: #0d3b1f;
+            --color-primary: #50C878; /* Verde esmeralda */
+            --color-primary-hover: #3ca35d;
+            --color-button-text: #ffffff;
+            --shadow-glass: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            --border-glass: 1px solid rgba(255, 255, 255, 0.18);
+        }
+
+        /* Tema Oscuro */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --color-bg-glass: rgba(15, 23, 42, 0.75);
+                --color-text: #ffffff;
+                --color-primary: #2E8B57; /* Verde mar oscuro para mejor contraste */
+                --color-primary-hover: #1e5c3a;
+                --color-button-text: #ffffff;
+                --shadow-glass: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+                --border-glass: 1px solid rgba(255, 255, 255, 0.05);
+            }
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            /* Fondo con la imagen proporcionada */
+            background-image: url('https://i.ibb.co/Hpr48bTP/Whats-App-Image-2026-05-05-at-9-45-01-PM.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--color-text);
+            padding: 20px;
+        }
+
+        /* Contenedor principal usando Grid */
+        .container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            width: 100%;
+            max-width: 800px;
+        }
+
+        /* Tarjetas con efecto Glassmorphism */
+        .card {
+            background: var(--color-bg-glass);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 20px;
+            border: var(--border-glass);
+            box-shadow: var(--shadow-glass);
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            font-size: 2rem;
+            color: var(--color-text);
+        }
+
+        /* Estilos generales para botones */
+        button, .btn-link {
+            background-color: var(--color-primary);
+            color: var(--color-button-text);
+            border: none;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            max-width: 300px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        button:hover, .btn-link:hover {
+            background-color: var(--color-primary-hover);
+            transform: translateY(-2px);
+        }
+
+        .btn-logo {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            object-fit: contain;
+            background-color: white; /* Fondo blanco en caso de logo transparente */
+        }
+
+        /* Sección de enlaces */
+        .links-container {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Canvas */
+        canvas {
+            background: rgba(0,0,0,0.05);
+            border-radius: 10px;
+            margin-bottom: 20px;
+            max-width: 100%;
+            border: 1px dashed var(--color-primary);
+        }
+
+        /* Ajustes responsivos */
+        @media (min-width: 768px) {
+            .container {
+                /* Puedes cambiar a grid-template-columns: repeat(2, 1fr); si quieres 2 columnas en desktop */
+                grid-template-columns: 1fr; 
+            }
+        }
+    </style>
+    <!-- [FIN PARA ARCHIVO: style.css] -->
+    <!-- ========================================================================= -->
+
+</head>
+<body>
+
+    <div class="container">
+        
+        <!-- SECCIÓN 1: Título y Web Speech API -->
+        <section class="card section-one">
+            <h1 id="app-title">Proyecto Desarrollo Web PWA</h1>
+            <button id="btn-speak">
+                🔊 Escuchar Título
+            </button>
+        </section>
+
+        <!-- SECCIÓN 2: Enlaces Externos -->
+        <section class="card section-two">
+            <h2>Enlaces de Interés</h2>
+            <br>
+            <div class="links-container">
+                <!-- Botón 1: Wix -->
+                <a href="https://juandiegomansilla.wixsite.com/website/copia-de-proyectos" target="_blank" class="btn-link">
+                    🌐 Mi Sitio Web Wix
+                </a>
+
+                <!-- Botón 2: YouTube -->
+                <a href="https://youtu.be/nm1GFWHCk8A?si=dmZa73amSm6HbFmS" target="_blank" class="btn-link">
+                    📺 Mi Video en YouTube
+                </a>
+
+                <!-- Botón 3: Galileo -->
+                <a href="https://www.galileo.edu/" target="_blank" class="btn-link">
+                    <img src="https://i.ibb.co/5h5jF51R/resize-Logo.jpg" alt="Logo Galileo" class="btn-logo">
+                    Universidad Galileo
+                </a>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 3: Canvas y Salida -->
+        <section class="card section-three">
+            <h2>Mi Apellido</h2>
+            <canvas id="myCanvas" width="400" height="150"></canvas>
+            
+            <button id="btn-exit" style="background-color: #d9534f;">
+                ❌ Salir
+            </button>
+        </section>
+
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- [INICIO PARA ARCHIVO: script.js] -->
+    <!-- Corta todo lo que está dentro de esta etiqueta <script> y pégalo en script.js -->
+    <!-- Y en este HTML agrega la línea: <script src="./script.js"></script> -->
+    <script>
+        // --- 1. LÓGICA DE LA SECCIÓN UNO (Web Speech API) ---
+        const btnSpeak = document.getElementById('btn-speak');
+        const titleText = document.getElementById('app-title').innerText;
+
+        btnSpeak.addEventListener('click', () => {
+            if ('speechSynthesis' in window) {
+                // Configurar el mensaje
+                const mensaje = new SpeechSynthesisUtterance(titleText);
+                mensaje.lang = 'es-ES'; // Idioma Español
+                mensaje.rate = 1;       // Velocidad normal
+                mensaje.pitch = 1;      // Tono normal
+                
+                // Hablar
+                window.speechSynthesis.speak(mensaje);
+            } else {
+                alert("Tu navegador no soporta la API de voz.");
+            }
+        });
+
+        // --- 2. LÓGICA DE LA SECCIÓN TRES (Canvas) ---
+        const canvas = document.getElementById('myCanvas');
+        const ctx = canvas.getContext('2d');
+
+        function drawLastName() {
+            // Ajustar el ancho del canvas al contenedor (responsivo)
+            const parentWidth = canvas.parentElement.clientWidth;
+            canvas.width = parentWidth > 400 ? 400 : parentWidth - 60; // Padding
+            canvas.height = 150;
+
+            // Limpiar canvas antes de dibujar
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Detectar si el usuario está en tema oscuro
+            const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+            // Configurar Gradiente para el texto
+            const gradient = ctx.createLinearGradient(0, 0, canvas.width, 0);
+            if (isDarkMode) {
+                gradient.addColorStop(0, "#ffffff"); // Blanco
+                gradient.addColorStop(1, "#2E8B57"); // Verde Esmeralda oscuro
+            } else {
+                gradient.addColorStop(0, "#0d3b1f"); // Verde muy oscuro
+                gradient.addColorStop(1, "#50C878"); // Verde Esmeralda claro
+            }
+
+            // Configurar Fuente y Alineación
+            ctx.font = "italic bold 45px 'Georgia', serif"; // Fuente elegante
+            ctx.textAlign = "center";
+            ctx.textBaseline = "middle";
+
+            // Sombras para darle profundidad
+            ctx.shadowColor = isDarkMode ? "rgba(255, 255, 255, 0.2)" : "rgba(0, 0, 0, 0.4)";
+            ctx.shadowBlur = 8;
+            ctx.shadowOffsetX = 3;
+            ctx.shadowOffsetY = 3;
+
+            // Dibujar el texto (tu apellido)
+            ctx.fillStyle = gradient;
+            ctx.fillText("Mansilla", canvas.width / 2, canvas.height / 2);
+        }
+
+        // Dibujar cuando carga la página
+        window.addEventListener('load', drawLastName);
+        
+        // Redibujar si cambia el tamaño de la pantalla
+        window.addEventListener('resize', drawLastName);
+
+        // **REQUISITO**: Redibujar el canvas si el usuario cambia el tema del sistema (Claro/Oscuro)
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', drawLastName);
+
+
+        // --- 3. LÓGICA DEL BOTÓN SALIR ---
+        const btnExit = document.getElementById('btn-exit');
+        btnExit.addEventListener('click', () => {
+            // Nota: window.close() usualmente solo funciona si la ventana fue abierta por un script (window.open). 
+            // Si el usuario abrió la pestaña directamente, los navegadores modernos bloquearán esta acción por seguridad.
+            if(confirm("¿Estás seguro de que deseas intentar cerrar la ventana?")) {
+                window.close();
+                // Mensaje de respaldo por si el navegador bloquea window.close()
+                alert("Si la ventana no se cerró, es debido a las políticas de seguridad de tu navegador. Por favor, cierra la pestaña manualmente.");
+            }
+        });
+
+
+        // --- 4. LÓGICA DE LA PWA (Registro del Service Worker) ---
+        // Simulación del registro. Buscará ./sw.js cuando separes los archivos.
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then((registration) => {
+                        console.log('✅ Service Worker registrado con éxito. Scope:', registration.scope);
+                    })
+                    .catch((error) => {
+                        console.log('❌ Error al registrar el Service Worker (Es normal si previsualizas en local sin servidor):', error);
+                    });
+            });
+        }
+    </script>
+    <!-- [FIN PARA ARCHIVO: script.js] -->
+    <!-- ========================================================================= -->
+
+    <!-- 
+    =================================================================================
+    INSTRUCCIONES Y CÓDIGO PARA TUS ARCHIVOS FÍSICOS (manifest.json y sw.js)
+    =================================================================================
+
+    [1. ARCHIVO: manifest.json]
+    Crea un archivo llamado manifest.json en la misma carpeta que tu index.html y pega esto:
+
+{
+  "name": "Proyecto Desarrollo Web PWA",
+  "short_name": "ProyPWA",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#50C878",
+  "description": "Mi aplicación web progresiva de una sola página.",
+  "icons": [
+    {
+      "src": "https://i.ibb.co/5h5jF51R/resize-Logo.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "https://i.ibb.co/5h5jF51R/resize-Logo.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg"
+    }
+  ]
+}
+
+
+    [2. ARCHIVO: sw.js]
+    Crea un archivo llamado sw.js (Service Worker) en la misma carpeta y pega este código
+    para darle caché básico e instalabilidad:
+
+const CACHE_NAME = 'pwa-cache-v1';
+const urlsToCache = [
+  './',
+  './index.html',
+  './style.css',
+  './script.js',
+  'https://i.ibb.co/Hpr48bTP/Whats-App-Image-2026-05-05-at-9-45-01-PM.jpg',
+  'https://i.ibb.co/5h5jF51R/resize-Logo.jpg'
+];
+
+// Instalación del Service Worker y Caché de recursos
+self.addEventListener('install', event => {
+  event.waitUntil(
+    caches.open(CACHE_NAME)
+      .then(cache => {
+        console.log('Archivos en caché guardados');
+        return cache.addAll(urlsToCache);
+      })
+  );
+});
+
+// Interceptar peticiones para que funcione offline
+self.addEventListener('fetch', event => {
+  event.respondWith(
+    caches.match(event.request)
+      .then(response => {
+        // Devuelve el recurso en caché si existe, sino lo descarga
+        return response || fetch(event.request);
+      })
+  );
+});
+    =================================================================================
+    -->
+
+</body>
+</html>
