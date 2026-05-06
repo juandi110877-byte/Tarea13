@@ -1,0 +1,21 @@
+{
+  "name": "Proyecto PWA Mansilla",
+  "short_name": "PWA Mansilla",
+  "description": "Proyecto Desarrollo Web PWA - Universidad Galileo",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#1a1a1a",
+  "theme_color": "#50C878",
+  "icons": [
+    {
+      "src": "https://i.ibb.co/5h5jF51R/resize-Logo.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "https://i.ibb.co/5h5jF51R/resize-Logo.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg"
+    }
+  ]
+}

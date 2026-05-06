@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto Desarrollo Web PWA</title>
+    
+    <!-- Simulador de enlace para manifest.json -->
+    <!-- En tu proyecto real, descomenta la siguiente línea: -->
+    <!-- <link rel="manifest" href="manifest.json"> -->
+
+    <!-- ========================================================= -->
+    <!-- INICIO ARCHIVO: style.css -->
+    <!-- Mueve todo el contenido entre <style> y </style> a style.css -->
+    <!-- ========================================================= -->
+    <style>
+        /* Paleta de Colores y Variables */
+        :root {
+            --primary-color: #50C878; /* Verde Esmeralda */
+            --secondary-color: #ffffff; /* Blanco */
+            --text-color: #333333;
+            --glass-bg: rgba(255, 255, 255, 0.4);
+            --glass-border: rgba(255, 255, 255, 0.3);
+            --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            --btn-hover: #3eb565;
+        }
+
+        /* Tema Oscuro automático */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --primary-color: #50C878;
+                --secondary-color: #1a1a1a;
+                --text-color: #f5f5f5;
+                --glass-bg: rgba(0, 0, 0, 0.6);
+                --glass-border: rgba(255, 255, 255, 0.1);
+                --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.7);
+            }
+        }
+
+        /* Reset y estilos generales */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            /* Fondo con la imagen desde URL externa */
+            background-color: #1a1a1a; /* Color oscuro de respaldo */
+            background-image: url('https://i.ibb.co/Hpr48bTP/Whats-App-Image-2026-05-05-at-9-45-01-PM.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: var(--text-color);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        /* Contenedor principal con CSS Grid */
+        .app-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            max-width: 800px;
+            width: 100%;
+        }
+
+        /* Estilo de Tarjetas Glassmorphism */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 20px;
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow);
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+        }
+
+        h1 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        /* Botones generales */
+        button, .btn-link {
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            margin: 10px;
+            width: 80%;
+            max-width: 300px;
+        }
+
+        /* El color del texto de los botones lo forzamos a blanco en ambos temas para que resalte con el esmeralda */
+        button, .btn-link {
+            color: white; 
+        }
+
+        button:hover, .btn-link:hover {
+            background-color: var(--btn-hover);
+            transform: scale(1.05);
+        }
+
+        /* Layout de la Sección 2 (Enlaces) */
+        .links-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Logo de Galileo */
+        .logo-btn {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            object-fit: cover;
+            background: white;
+            padding: 2px;
+        }
+
+        /* Sección 3 - Canvas */
+        canvas {
+            width: 100%;
+            max-width: 500px;
+            height: 150px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            background: transparent;
+        }
+    </style>
+    <!-- ========================================================= -->
+    <!-- FIN ARCHIVO: style.css -->
+    <!-- ========================================================= -->
+</head>
+<body>
+
+    <main class="app-container">
+        
+        <!-- Sección 1: Título y Web Speech API -->
+        <section class="glass-card" id="seccion-uno">
+            <h1 id="app-title">Proyecto Desarrollo Web PWA</h1>
+            <button onclick="escucharTitulo()">
+                🔊 Escuchar Título
+            </button>
+        </section>
+
+        <!-- Sección 2: Enlaces Externos -->
+        <section class="glass-card" id="seccion-dos">
+            <h2>Enlaces del Proyecto</h2>
+            <div class="links-container">
+                <a href="https://juandiegomansilla.wixsite.com/website/copia-de-proyectos" target="_blank" class="btn-link">
+                    🌐 Mi Sitio Web Wix
+                </a>
+                <a href="https://youtu.be/nm1GFWHCk8A?si=dmZa73amSm6HbFmS" target="_blank" class="btn-link">
+                    📺 Mi Video en YouTube
+                </a>
+                <a href="https://www.galileo.edu/" target="_blank" class="btn-link">
+                    <img src="https://i.ibb.co/5h5jF51R/resize-Logo.jpg" alt="Logo Galileo" class="logo-btn">
+                    Universidad Galileo
+                </a>
+            </div>
+        </section>
+
+        <!-- Sección 3: Canvas y Salida -->
+        <section class="glass-card" id="seccion-tres">
+            <h2>Firma Digital</h2>
+            <canvas id="miCanvas" width="500" height="150"></canvas>
+            <br>
+            <button onclick="cerrarVentana()" style="background-color: #e74c3c;">
+                ❌ Salir
+            </button>
+        </section>
+
+    </main>
+
+    <!-- ========================================================= -->
+    <!-- INICIO ARCHIVO: script.js -->
+    <!-- Mueve todo el contenido entre <script> y </script> a script.js -->
+    <!-- Recuerda agregar <script src="script.js"></script> en tu HTML -->
+    <!-- ========================================================= -->
+    <script>
+        // --- 1. LÓGICA DE WEB SPEECH API ---
+        function escucharTitulo() {
+            const titulo = document.getElementById('app-title').innerText;
+            
+            // Verificamos si el navegador soporta SpeechSynthesis
+            if ('speechSynthesis' in window) {
+                const utterance = new SpeechSynthesisUtterance(titulo);
+                utterance.lang = 'es-ES'; // Idioma Español
+                utterance.rate = 1;       // Velocidad normal
+                utterance.pitch = 1;      // Tono normal
+                window.speechSynthesis.speak(utterance);
+            } else {
+                alert("Lo siento, tu navegador no soporta la Web Speech API.");
+            }
+        }
+
+        // --- 2. LÓGICA DEL CANVAS ---
+        function dibujarCanvas() {
+            const canvas = document.getElementById('miCanvas');
+            const ctx = canvas.getContext('2d');
+            
+            // Limpiamos el canvas antes de dibujar
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Detectar el tema del sistema (Claro/Oscuro) para cambiar los tonos si es necesario
+            const isDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+            // Configuración de la fuente elegante
+            ctx.font = "italic bold 65px 'Georgia', serif";
+            ctx.textAlign = "center";
+            ctx.textBaseline = "middle";
+
+            // Sombra del texto
+            ctx.shadowColor = isDarkTheme ? "rgba(0,0,0,0.9)" : "rgba(0,0,0,0.4)";
+            ctx.shadowOffsetX = 4;
+            ctx.shadowOffsetY = 4;
+            ctx.shadowBlur = 8;
+
+            // Creación del Gradiente (Verde Esmeralda y Blanco)
+            const gradient = ctx.createLinearGradient(0, 0, canvas.width, 0);
+            gradient.addColorStop(0, "#50C878"); // Verde esmeralda
+            gradient.addColorStop(0.5, "#ffffff"); // Blanco (resalta bien en ambos temas)
+            gradient.addColorStop(1, "#50C878"); // Verde esmeralda
+
+            ctx.fillStyle = gradient;
+            
+            // Dibujar el apellido centrado
+            ctx.fillText("Mansilla", canvas.width / 2, canvas.height / 2);
+        }
+
+        // Ejecutar dibujo al cargar la página
+        window.onload = dibujarCanvas;
+
+        // Escuchar cambios de tema (claro/oscuro) en el SO para redibujar el canvas
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', dibujarCanvas);
+
+        // --- 3. LÓGICA DE SALIDA ---
+        function cerrarVentana() {
+            // Nota: window.close() solo funciona si la ventana fue abierta por un script (por razones de seguridad del navegador).
+            // Lo intentamos según la solicitud:
+            if (confirm("¿Estás seguro que deseas intentar cerrar la ventana?")) {
+                window.close();
+                // Mensaje de fallback si el navegador bloquea el cierre:
+                alert("Si la ventana no se cierra, es porque las políticas de seguridad de tu navegador bloquean cerrar pestañas no abiertas por scripts. ¡Por favor cierra la pestaña manualmente!");
+            }
+        }
+
+        // --- 4. LÓGICA DE REGISTRO DEL SERVICE WORKER (PWA) ---
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then(registration => {
+                        console.log('Service Worker registrado con éxito. Scope:', registration.scope);
+                    })
+                    .catch(error => {
+                        console.log('El registro del Service Worker falló:', error);
+                    });
+            });
+        }
+    </script>
+    <!-- ========================================================= -->
+    <!-- FIN ARCHIVO: script.js -->
+    <!-- ========================================================= -->
+
+
+    <!-- ========================================================= -->
+    <!-- ARCHIVOS FÍSICOS REQUERIDOS PARA LA PWA -->
+    <!-- Cópialos y pégalos en nuevos archivos en la raíz de tu proyecto -->
+    <!-- ========================================================= -->
+    
+    <!-- 
+    ======================================
+    INICIO ARCHIVO: manifest.json
+    ======================================
+    {
+        "name": "Proyecto PWA Mansilla",
+        "short_name": "PWA Mansilla",
+        "description": "Proyecto Desarrollo Web PWA - Galileo",
+        "start_url": "./index.html",
+        "display": "standalone",
+        "background_color": "#ffffff",
+        "theme_color": "#50C878",
+        "icons": [
+            {
+                "src": "https://i.ibb.co/5h5jF51R/resize-Logo.jpg",
+                "sizes": "192x192",
+                "type": "image/jpeg"
+            },
+            {
+                "src": "https://i.ibb.co/5h5jF51R/resize-Logo.jpg",
+                "sizes": "512x512",
+                "type": "image/jpeg"
+            }
+        ]
+    }
+    ======================================
+    FIN ARCHIVO: manifest.json
+    ======================================
+    -->
+
+    <!-- 
+    ======================================
+    INICIO ARCHIVO: sw.js
+    ======================================
+    const CACHE_NAME = 'pwa-mansilla-v1';
+    const urlsToCache = [
+        './',
+        './index.html',
+        './style.css',
+        './script.js',
+        'https://i.ibb.co/Hpr48bTP/Whats-App-Image-2026-05-05-at-9-45-01-PM.jpg',
+        './manifest.json'
+    ];
+
+    // Instalación del Service Worker
+    self.addEventListener('install', event => {
+        event.waitUntil(
+            caches.open(CACHE_NAME)
+                .then(cache => {
+                    console.log('Archivos cacheados exitosamente');
+                    return cache.addAll(urlsToCache);
+                })
+        );
+    });
+
+    // Activación y limpieza de cachés antiguos
+    self.addEventListener('activate', event => {
+        const cacheWhitelist = [CACHE_NAME];
+        event.waitUntil(
+            caches.keys().then(cacheNames => {
+                return Promise.all(
+                    cacheNames.map(cacheName => {
+                        if (cacheWhitelist.indexOf(cacheName) === -1) {
+                            return caches.delete(cacheName);
+                        }
+                    })
+                );
+            })
+        );
+    });
+
+    // Estrategia de Fetch (Cache First, Network Fallback)
+    self.addEventListener('fetch', event => {
+        event.respondWith(
+            caches.match(event.request)
+                .then(response => {
+                    // Si el archivo está en caché, lo devuelve
+                    if (response) {
+                        return response;
+                    }
+                    // Si no, hace la petición a la red
+                    return fetch(event.request);
+                })
+        );
+    });
+    ======================================
+    FIN ARCHIVO: sw.js
+    ======================================
+    -->
+
+</body>
+</html>
