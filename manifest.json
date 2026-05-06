@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vista del manifest.json</title>
+    <style>
+        :root {
+            --color-bg-glass: rgba(255, 255, 255, 0.7);
+            --color-text: #0d3b1f;
+            --color-primary: #50C878;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --color-bg-glass: rgba(15, 23, 42, 0.75);
+                --color-text: #ffffff;
+                --color-primary: #2E8B57;
+            }
+        }
+
+        body {
+            background-image: url('https://i.ibb.co/Hpr48bTP/Whats-App-Image-2026-05-05-at-9-45-01-PM.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            padding: 20px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .json-card {
+            background: var(--color-bg-glass);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            padding: 40px;
+            width: 100%;
+            max-width: 700px;
+            overflow-x: auto;
+        }
+
+        .json-title {
+            color: var(--color-primary);
+            margin-top: 0;
+            font-family: sans-serif;
+            border-bottom: 2px solid var(--color-primary);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        pre {
+            color: var(--color-text);
+            font-size: 1.1rem;
+            line-height: 1.5;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .key { color: var(--color-primary); font-weight: bold; }
+        .string { color: #ce9178; } /* Color estilo editor para strings */
+        .number { color: #b5cea8; }
+    </style>
+</head>
+<body>
+
+    <div class="json-card">
+        <h2 class="json-title">manifest.json</h2>
+        <pre>
+{
+  <span class="key">"name"</span>: <span class="string">"Proyecto Desarrollo Web PWA"</span>,
+  <span class="key">"short_name"</span>: <span class="string">"ProyPWA"</span>,
+  <span class="key">"start_url"</span>: <span class="string">"./index.html"</span>,
+  <span class="key">"display"</span>: <span class="string">"standalone"</span>,
+  <span class="key">"background_color"</span>: <span class="string">"#ffffff"</span>,
+  <span class="key">"theme_color"</span>: <span class="string">"#50C878"</span>,
+  <span class="key">"description"</span>: <span class="string">"Mi aplicación web progresiva de una sola página desarrollada con HTML, CSS y JS."</span>,
+  <span class="key">"icons"</span>: [
+    {
+      <span class="key">"src"</span>: <span class="string">"https://i.ibb.co/5h5jF51R/resize-Logo.jpg"</span>,
+      <span class="key">"sizes"</span>: <span class="string">"192x192"</span>,
+      <span class="key">"type"</span>: <span class="string">"image/jpeg"</span>,
+      <span class="key">"purpose"</span>: <span class="string">"any maskable"</span>
+    },
+    {
+      <span class="key">"src"</span>: <span class="string">"https://i.ibb.co/5h5jF51R/resize-Logo.jpg"</span>,
+      <span class="key">"sizes"</span>: <span class="string">"512x512"</span>,
+      <span class="key">"type"</span>: <span class="string">"image/jpeg"</span>,
+      <span class="key">"purpose"</span>: <span class="string">"any"</span>
+    }
+  ]
+}
+        </pre>
+    </div>
+
+</body>
+</html>
